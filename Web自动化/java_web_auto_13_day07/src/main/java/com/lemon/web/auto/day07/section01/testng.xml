@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Login_Test">
+    <classes>
+      <class name="com.lemon.web.auto.day07.section01.testcase.login.LoginTester"/>
+    </classes>
+  </test> 
+ <!--   <test name="Register_Test">
+    <classes>
+      <class name="com.lemon.web.auto.day07.section01.testcase.register.RegisterTester"/>
+    </classes>
+  </test>  -->
+</suite> 

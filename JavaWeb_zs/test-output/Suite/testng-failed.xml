@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="com.zs.auto.day09_1102.listener.WebAutoListener"/>
+  </listeners>
+  <test name="LoginTest(failed)">
+    <classes>
+      <class name="com.zs.auto.day09_1102.utils.Jietu">
+        <methods>
+          <include name="test1"/>
+        </methods>
+      </class> <!-- com.zs.auto.day09_1102.utils.Jietu -->
+    </classes>
+  </test> <!-- LoginTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

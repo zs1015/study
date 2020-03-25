@@ -1,0 +1,105 @@
+数据驱动:在自动化测试领域，提倡测试数据分离，即测试用例和测试数据是分开的，通过在一套测试用例上执行多套测试数据，从而提高测试效率
+ * 通过将测试数据存储到excel、csv、xml、甚至数据库，利用TestNG的数据提供者特性，完成数据驱动
+
+selenium
+1.原理：
+客户端<===>服务器
+一：客户端 ：	发送请求（指令）			
+	java、python等
+
+		二：发送到驱动程序（指令的代理服务器），
+		webDriver ， 开启一个服务进程	
+					三：操作对象：浏览器
+					实现操作
+等待：
+（1）强制等待、硬性等待、线程等待、线程休眠
+	Thread.sleep()
+	缺点：无法缺点合适的等待时间，可能不生效，可能造成浪费时间
+（2）隐式等待（元素没加载出来）
+driver.manage().timeouts().implicitlyWait(time, unit)
+（3）显式等待、智能等待：WebDriverWait类的until（）方法
+	调用 until 或 until_not 中的方法的间隔时间，
+	apply()方法默认是0.5秒；直到返回值不是False，直到找到，才执行下步操作
+	《1》当这个方法返回了非null或者非false
+	《2》超时
+	《3》抛出一个不可忽略的异常
+	《4》线程被打断
+2.	selenium 2.53.1+Firefox46.0 
+	selenium2.53.1+chrome60.0+chromedriver2.32
+
+
+Firefox:
+	 selenium2.xxx版本，Firefox驱动程序是集成在FirefoxDriver（Firefox46.0 + selenium
+	 2.53.1）
+	selenium3.xxx本本，Firefox是需要驱动程序（放到Path路径里，或者代码手动设置）
+	
+	 * 异常1：如果在PATH中找不到Firefox的可执行程序对应的路径，会报如下错误
+	 * 	Cannot find firefox binary in PATH. Make sure firefox is installed.
+	 * 	修改方法1:添加环境变量
+	 * 	修改方法2:指定可执行文件的路径
+	 System.setProperty("webdriver.firefox.bin", 
+	 		"D:\\Program Files\\Mozilla Firefox\\firefox.exe");
+	
+chrome:
+	3.弹窗提示：Chromedriver.exe 已停止工作
+		解决方案：降级chrome版本  or    提升驱动版本
+	4.JDK不兼容：
+	Exception in thread "main" java.lang.UnsupportedClassVersionError: 
+	解决方案：
+	3.x的selenium需要1.8的jdk，可能jdk版本过低
+
+IE浏览器：
+	
+	1.：The path to the driver executable must be set by the  webdriver.ie.driver system property;
+	解决方案：设置driver
+	2.:Unexpected error launching Internet Explorer. Browser zoom level was set to 150%. It should be set to 100%
+	解决方案：1:把缩放级别设置到100% ;2：忽略缩放级别的:
+	capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
+	3.Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be
+	set to the same value (enabled or disabled) for all zones.
+	4.（1）Unable to find element on closed window (WARNING: The server did not provide any stacktrace information)
+	  （2）Unable to find element with name == wd
+	解决方案：丢失窗口，，给一个初始化窗口
+
+
+1.findElement()单个元素------返回值：WebElement对象
+click();点击
+2.findElements()多个元素----- 返回值：List集合
+（分页查询：大小用size()）
+3.Keys枚举类：复制、粘贴、剪切、全选
+4.getTagName（）获取标签类型
+5.getAttribute（）获取对应属性值
+6.getText（）获取文本
+
+7.isDisplayed（）：元素是否显示
+8.isEnabled（）：元素是否生效
+9.isSelected（）元素是否被选择（选中）
+
+10.submit();// 表单提交按钮。等于按钮点击和整个表单的提交
+
+11.getCurrentUrl());//当前网址URL
+12.getTitle());//标题
+13.getPageSource());//源代码
+
+14.close（）关闭当前窗口（第一个窗口：可窗口切换）
+
+15.manage()获取Options--浏览器菜单操作对象：：比如完成cookie的设置
+driver.get("http://120.78.128.25:8765");
+Options options = driver.manage();//  
+options.addCookie(new Cookie("remember_me","13825161923"));
+driver.get("http://120.78.128.25:8765/Member/index.html");
+
+16.timeouts():超时驱动对象
+//隐式等待（元素没加载出来）
+driver.manage().timeouts().implicitlyWait(time, unit)
+
+17.driver.manage().window().maximize();// 窗口最大化
+getSize（）窗口大小    setSize() 设置窗口大小
+
+
+监听器,当执行失败用例的时候,触发
+ * 1.需要继承TestListenerAdapter,
+ * 2.重写其onTestFailure方法
+ *  其中还有很多监听方法重写
+
+

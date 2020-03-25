@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "8c2b2123-efb8-2ee1-d7b8-16bc56ca29a1",
+		"name": "futureloan-new-token&sign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "注册",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"mobile_phone\":\"13888888811\",\"pwd\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/register",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登录",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "95f043eb-9fbb-4e51-89c2-7e52c92c78cc",
+								"exec": [
+									"//获取响应数据json对象",
+									"var jsonData = pm.response.json();",
+									"//从响应数据提取出token",
+									"var token = jsonData.data.token_info.token;",
+									"//设置token",
+									"pm.environment.set(\"token\", token);",
+									"//设置用户id",
+									"pm.environment.set(\"member_id\", jsonData.data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"mobile_phone\":\"13888888811\",\"pwd\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/login",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1b8d7038-4bbd-4715-8f00-af9a53463cba",
+								"exec": [
+									"if(!pm.globals.has(\"forgeJS\")){\r",
+									"        pm.sendRequest(\"https://raw.githubusercontent.com/loveiset/RSAForPostman/master/forge.js\", function (err, res) {\r",
+									"            if (err) {\r",
+									"                console.log(err);}\r",
+									"            else {\r",
+									"                pm.globals.set(\"forgeJS\", res.text());\r",
+									"            }\r",
+									"        })\r",
+									"}\r",
+									"\r",
+									"eval(postman.getGlobalVariable(\"forgeJS\"));\r",
+									"\r",
+									"const public_key = '-----BEGIN PUBLIC KEY-----\\n'+\r",
+									"'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQENQujkLfZfc5Tu9Z1LprzedE\\n'+\r",
+									"'O3F7gs+7bzrgPsMl29LX8UoPYvIG8C604CprBQ4FkfnJpnhWu2lvUB0WZyLq6sBr\\n'+\r",
+									"'tuPorOc42+gLnFfyhJAwdZB6SqWfDg7bW+jNe5Ki1DtU7z8uF6Gx+blEMGo8Dg+S\\n'+\r",
+									"'kKlZFc8Br7SHtbL2tQIDAQAB\\n'+\r",
+									"'-----END PUBLIC KEY-----' + '\\r';\r",
+									"var publicKey = forge.pki.publicKeyFromPem(public_key);\r",
+									"//时间戳\r",
+									"var timestamp = Math.round(new Date().getTime()/1000);\r",
+									"//获取token\r",
+									"var token =pm.environment.get(\"token\"); \r",
+									"//拼接token和实际戳: token前50位+timestamp\r",
+									"var tempStr = token.substring(0,50)+timestamp;\r",
+									"//rsa加密得到签名\r",
+									"var sign = forge.util.encode64(publicKey.encrypt(tempStr, 'RSAES-PKCS1-V1_5', {\r",
+									"  md: forge.md.sha1.create(),\r",
+									"   mgf: forge.mgf.mgf1.create(forge.md.sha1.create())\r",
+									"}));\r",
+									"\r",
+									"//设置到环境变量\r",
+									"pm.environment.set(\"timestamp\", timestamp);\r",
+									"pm.environment.set(\"sign\", sign);\r",
+									"\r",
+									"console.log(\"timestamp:\" + timestamp);\r",
+									"pm.environment.unset(\"variable_key\");console.log(\"token:\" + token);\r",
+									"console.log(\"tempStr:\" + tempStr);  \r",
+									"console.log(\"encrypted text:\" + sign);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"member_id\": {{member_id}},\n    \"amount\": 6300,\n    \"timestamp\": {{timestamp}},\n    \"sign\": \"{{sign}}\"\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/recharge",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"recharge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "提现",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":186,\"amount\":100000}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/withdraw",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新昵称",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"reg_name\":\"檬檬\"}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/187",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"187"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "会员信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/1",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "投资",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"member_id\":1,\n\t\"password\":\"123456\",\n\t\"loan_id\":1,\n\t\"amount\":300.00\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/invest",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"invest"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loan",
+			"item": [
+				{
+					"name": "新增项目",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"member_id\":1,\r\n    \"title\":\"报名Java全栈自动化课程\",\r\n    \"amount\":6300.00,\r\n    \"loan_rate\":12.0,\r\n    \"loan_term\":12,\r\n    \"loan_date_type\":1,\r\n    \"bidding_days\":5\r\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/loan",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"loan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "审核项目",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"approved_or_not\":true}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/loan/1",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"loan",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "标列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v3",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{futureloan_base_url}}/loans?pageIndex=1&pageSize=1",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"loans"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "加密测试",
+			"item": [
+				{
+					"name": "加密测试接口",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a1ff42d7-39ff-4cc1-bbab-ad7db04375b7",
+								"exec": [
+									"if(!pm.globals.has(\"forgeJS\")){\r",
+									"        pm.sendRequest(\"https://raw.githubusercontent.com/loveiset/RSAForPostman/master/forge.js\", function (err, res) {\r",
+									"            if (err) {\r",
+									"                console.log(err);}\r",
+									"            else {\r",
+									"                pm.globals.set(\"forgeJS\", res.text());\r",
+									"            }\r",
+									"        })\r",
+									"}\r",
+									"\r",
+									"eval(postman.getGlobalVariable(\"forgeJS\"));\r",
+									"\r",
+									"const public_key = '-----BEGIN PUBLIC KEY-----\\n'+\r",
+									"'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQENQujkLfZfc5Tu9Z1LprzedE\\n'+\r",
+									"'O3F7gs+7bzrgPsMl29LX8UoPYvIG8C604CprBQ4FkfnJpnhWu2lvUB0WZyLq6sBr\\n'+\r",
+									"'tuPorOc42+gLnFfyhJAwdZB6SqWfDg7bW+jNe5Ki1DtU7z8uF6Gx+blEMGo8Dg+S\\n'+\r",
+									"'kKlZFc8Br7SHtbL2tQIDAQAB\\n'+\r",
+									"'-----END PUBLIC KEY-----' + '\\r';\r",
+									"var publicKey = forge.pki.publicKeyFromPem(public_key);\r",
+									"//时间戳\r",
+									"var timestamp = Math.round(new Date().getTime()/1000);\r",
+									"//获取token\r",
+									"var token =pm.environment.get(\"token\"); \r",
+									"//拼接token和实际戳: token前50位+timestamp\r",
+									"var temStr = token.substring(0,50)+timestamp;\r",
+									"//rsa加密得到签名\r",
+									"var sign = forge.util.encode64(publicKey.encrypt(tempStr, 'RSAES-PKCS1-V1_5', {\r",
+									"  md: forge.md.sha1.create(),\r",
+									"   mgf: forge.mgf.mgf1.create(forge.md.sha1.create())\r",
+									"}));\r",
+									"\r",
+									"//设置到环境变量\r",
+									"pm.environment.set(\"timestamp\", timestamp);\r",
+									"pm.environment.set(\"sign\", sign);\r",
+									"\r",
+									"// console.log(\"timestamp:\" + timestamp);\r",
+									"// console.log(\"token:\" + token);\r",
+									"// console.log(\"tempStr:\" + tempStr);  \r",
+									"// console.log(\"encrypted text:\" + sign);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f42c8e9a-167b-4a73-b2f3-45a6bffa5282",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://www.baidu.com",
+							"protocol": "http",
+							"host": [
+								"www",
+								"baidu",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="false">
+	<!-- 监听器 -->
+	<listeners>
+		<listener class-name="com.zs.auto.day09_1102.listener.WebAutoListener"></listener>
+	</listeners>
+	<test name="LoginTest">
+		<classes>
+			<class name="com.zs.auto.day09_1102.utils.Jietu" />
+		</classes>
+	</test>
+	<!-- <test name="LoginTest">
+		<classes>
+			<class name="com.zs.auto.day09_1102.testcase.login.LoginTest" />
+		</classes>
+	</test> -->
+	<!-- <test name="RegisterTest">
+		<classes>
+			<class name="com.zs.auto.day09_1102.testcase.register.RegisterTest" />
+		</classes>
+	</test> -->
+</suite> 

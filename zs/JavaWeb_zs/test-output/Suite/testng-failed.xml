@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <test name="LoginTest(failed)">
+    <classes>
+      <class name="com.zs.auto.day07_1029.login.LoginTest">
+        <methods>
+          <include name="case_test" invocation-numbers="3"/>
+        </methods>
+      </class> <!-- com.zs.auto.day07_1029.login.LoginTest -->
+      <class name="com.zs.auto.day07_1029.register.RegisterTest">
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.zs.auto.day07_1029.register.RegisterTest -->
+    </classes>
+  </test> <!-- LoginTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

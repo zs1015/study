@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.zs.auto.day07_1029.login.LoginTest">
+        <methods>
+          <include name="login_success_case" invocation-numbers="0"/>
+          <include name="afterSuite"/>
+          <include name="beforeSuite"/>
+          <include name="login_fail_case"/>
+        </methods>
+      </class> <!-- com.zs.auto.day07_1029.login.LoginTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

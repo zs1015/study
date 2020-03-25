@@ -1,0 +1,27 @@
+app类型:
+Native APP :原生app
+Hybrid App :混合App   区别方法:开发者选项里的::打开边界
+
+Android布局:
+框架布局(FrameLayout)所有的控件都默认摆放在布局的左上角
+线性布局(LinearLayout):垂直方向与水平方向的布局方式
+表格布局TableLayout:表格布局和网格布局类似，但是需要注意的是，表格布局不能跨行，只能跨列
+相对布局RelativeLayout:通过相对定位的方式让控件出现在布局的任何位置
+绝对布局AbsoluteLayout
+
+控件:
+文本输入框(TextView) :展示文字/文本
+编辑框(EditText):接收用户输入的数据
+图片控件(ImageView):用来显示图片
+按钮(Button):点击
+复选框(CheckBox):复选/多选
+进度条(ProgressBar)。:加载进度条，表示正在加载某一些数据
+
+
+
+
+app的Hybrid混合应用(嵌套的web页面)
+安卓系统自带的Android system webView控件
+
+
+testin云测平台

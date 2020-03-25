@@ -1,0 +1,64 @@
+{
+  "name": "uc-devtools",
+  "version": "0.4.1",
+  "description": "UC devtools for mobile developers",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "electron .",
+    "debug": "electron . --enable-logging --remote-debugging-port=9222 --inspect=9221",
+    "watch": "webpack --progress --colors --watch",
+    "build": "webpack -p",
+    "package": "webpack -p && node ./scripts/build_package.js",
+    "testpack": "node ./scripts/build_package.js"
+  },
+  "repository": "http://gitlab.alibaba-inc.com/uc-core-engine/ucdev.git",
+  "homepage": "http://gitlab.alibaba-inc.com/uc-core-engine/ucdev.git",
+  "keywords": [
+    "Electron",
+    "uc",
+    "devtols"
+  ],
+  "author": "UC Kernel team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bluebird": "3.5.1",
+    "compare-versions": "^3.1.0",
+    "electron-config": "^1.0.0"
+  },
+  "devDependencies": {
+    "adbkit": "2.11.0",
+    "antd": "^3.4.3",
+    "archiver": "^2.1.1",
+    "babel-core": "^6.26.2",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "colors": "^1.2.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "electron": "^1.8.6",
+    "electron-debug": "^1.4.0",
+    "electron-installer-dmg": "^0.2.1",
+    "electron-installer-windows": "^0.2.0",
+    "electron-packager": "^10.1.2",
+    "electron-wix-msi": "^1.3.0",
+    "immutable": "^3.8.2",
+    "msi-packager": "^1.3.0",
+    "photon": "github:connors/photon",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.19.1",
+    "ua-device": "^0.1.10",
+    "uglify-es": "^3.3.10",
+    "webpack": "^3.11.0"
+  },
+  "optionalDependencies": {
+    "fileicon": "^0.2.2"
+  },
+  "tnpm": {
+    "mode": "npm",
+    "lockfile": "enable"
+  }
+}

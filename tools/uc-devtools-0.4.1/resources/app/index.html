@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>UC Devtools</title>
+
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      (function(){
+          var u="https://track.uc.cn/";
+          _paq.push(['setSiteId', '3aa59e7b0249']);
+          _paq.push(['setDocumentTitle',  'uc-devtools-index']);
+          _paq.push(['setTrackerUrl', u+'collect?uc_param_str=dnfrcpve']);
+          _paq.push(['setCustomVariable', 1, 'is', 'dev_test_user_0000', 'visit']);
+          _paq.push(['setCustomVariable', 2, 'reqs', 'dnfrcpve', 'visit']);
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.defer=true; g.async=true;
+          g.src=u+'uaest.js';
+          s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+
+  </head>
+  <body>
+  <div id="root"></div>
+  </body>
+  <script>
+      // You can also require other files to run in this process
+      require('./discover.bundle.js')
+  </script>
+</html>

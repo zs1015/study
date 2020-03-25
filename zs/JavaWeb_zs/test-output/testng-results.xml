@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="6" passed="6">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="11807" started-at="2019-11-04T12:50:15Z" finished-at="2019-11-04T12:50:27Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="11807" started-at="2019-11-04T12:50:15Z" finished-at="2019-11-04T12:50:27Z">
+      <class name="com.zs.auto.day08_1031.login.LoginTest">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="beforeSuite" is-config="true" duration-ms="8128" started-at="2019-11-04T20:50:07Z" finished-at="2019-11-04T20:50:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="login_fail_case(com.zs.auto.day08_1031.login.LoginFailData)[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="login_fail_case" duration-ms="6305" started-at="2019-11-04T20:50:19Z" data-provider="login_fail_case" finished-at="2019-11-04T20:50:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LoginFailData [mobilephone=, password=, expectedTips=用户名不能为空, getMobilephone()=, getPassword()=, getExpectedTips()=用户名不能为空, getRowNo()=2, toString()=Excel [rowNo=2], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=473053293]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login_fail_case -->
+        <test-method status="PASS" signature="login_fail_case(com.zs.auto.day08_1031.login.LoginFailData)[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="login_fail_case" duration-ms="425" started-at="2019-11-04T20:50:25Z" data-provider="login_fail_case" finished-at="2019-11-04T20:50:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LoginFailData [mobilephone=zzz, password=, expectedTips=非法的手机号, getMobilephone()=zzz, getPassword()=, getExpectedTips()=非法的手机号, getRowNo()=3, toString()=Excel [rowNo=3], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=1579132337]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login_fail_case -->
+        <test-method status="PASS" signature="login_fail_case(com.zs.auto.day08_1031.login.LoginFailData)[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="login_fail_case" duration-ms="403" started-at="2019-11-04T20:50:26Z" data-provider="login_fail_case" finished-at="2019-11-04T20:50:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LoginFailData [mobilephone=13444445555, password=, expectedTips=密码不能为空, getMobilephone()=13444445555, getPassword()=, getExpectedTips()=密码不能为空, getRowNo()=4, toString()=Excel [rowNo=4], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=487792155]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login_fail_case -->
+        <test-method status="PASS" signature="login_fail_case(com.zs.auto.day08_1031.login.LoginFailData)[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="login_fail_case" duration-ms="402" started-at="2019-11-04T20:50:26Z" data-provider="login_fail_case" finished-at="2019-11-04T20:50:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LoginFailData [mobilephone=13444445555, password=12345, expectedTips=账号信息错误, getMobilephone()=13444445555, getPassword()=12345, getExpectedTips()=账号信息错误, getRowNo()=5, toString()=Excel [rowNo=5], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=1252540239]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login_fail_case -->
+        <test-method status="PASS" signature="login_fail_case(com.zs.auto.day08_1031.login.LoginFailData)[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="login_fail_case" duration-ms="359" started-at="2019-11-04T20:50:26Z" data-provider="login_fail_case" finished-at="2019-11-04T20:50:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LoginFailData [mobilephone=12400008888, password=, expectedTips=非法的手机号, getMobilephone()=12400008888, getPassword()=, getExpectedTips()=非法的手机号, getRowNo()=6, toString()=Excel [rowNo=6], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=314411620]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login_fail_case -->
+        <test-method status="PASS" signature="login_fail_case(com.zs.auto.day08_1031.login.LoginFailData)[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="login_fail_case" duration-ms="359" started-at="2019-11-04T20:50:27Z" data-provider="login_fail_case" finished-at="2019-11-04T20:50:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LoginFailData [mobilephone=1344444555, password=, expectedTips=非法的手机号, getMobilephone()=1344444555, getPassword()=, getExpectedTips()=非法的手机号, getRowNo()=7, toString()=Excel [rowNo=7], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=1890266440]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login_fail_case -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.zs.auto.day08_1031.login.LoginTest@5e3a8624]" name="afterSuite" is-config="true" duration-ms="3214" started-at="2019-11-04T20:50:27Z" finished-at="2019-11-04T20:50:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.zs.auto.day08_1031.login.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

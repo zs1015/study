@@ -1,0 +1,6 @@
+v1.3接口base_url: http://api.lemonban.com/futureloan
+MySQL数据库连接信息：
+	主机：api.lemonban.com
+	port：3306
+	用户：future
+	密码：123456

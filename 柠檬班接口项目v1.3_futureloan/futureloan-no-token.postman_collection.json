@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "6a985591-6c1e-4a4a-b8ce-7ea8c27e0688",
+		"name": "futureloan-no-token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "注册",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c2e04eee-bd54-47c2-835a-8506bfd9ae46",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobile_phone\": \"13888887777\",\n    \"pwd\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://120.78.128.25:8766/futureloan/member/register",
+							"protocol": "http",
+							"host": [
+								"120",
+								"78",
+								"128",
+								"25"
+							],
+							"port": "8766",
+							"path": [
+								"futureloan",
+								"member",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登录",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "20e691f0-0d5b-422b-8cfc-c592d95dd503",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "78fb2f92-75e2-4360-ab9e-10023959c185",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobile_phone\": \"13888887777\",\n    \"pwd\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/login",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "登录",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Lemonban-Media-Type",
+										"value": "lemonban.v2",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mobile_phone\": \"13999888819\",\n    \"pwd\": \"123456\"\n}"
+								},
+								"url": {
+									"raw": "{{futureloan_base_url}}/member/login",
+									"host": [
+										"{{futureloan_base_url}}"
+									],
+									"path": [
+										"member",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "充值",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"member_id\": 35,\n    \"amount\": 6300\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/recharge",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"recharge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "提现",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"member_id\": 35,\n    \"amount\": 500\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/withdraw",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新昵称",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"member_id\": \"1\",\n    \"reg_name\": \"檬檬\"\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/update",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "会员信息",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"type": "text",
+								"value": "lemonban.v1"
+							}
+						],
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/1/info",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"1",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "投资",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"member_id\":1,\n\t\"loan_id\":37,\n\t\"amount\":300.00\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/member/invest",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"member",
+								"invest"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loan",
+			"item": [
+				{
+					"name": "新增项目",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7cc15db4-b6ef-47cc-89ff-660c38b82cc0",
+								"exec": [
+									"//获取响应数据json对象",
+									"var jsonData = pm.response.json();",
+									"//设置项目id",
+									"pm.environment.set(\"loan_id\", jsonData.data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"member_id\":1,\r\n    \"title\":\"报名Java全栈自动化课程\",\r\n    \"amount\":6300.00,\r\n    \"loan_rate\":12.0,\r\n    \"loan_term\":12,\r\n    \"loan_date_type\":1,\r\n    \"bidding_days\":5\r\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/loan/add",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"loan",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "审核项目",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"loan_id\": \"\",\n    \"approved_or_not\": true\n}"
+						},
+						"url": {
+							"raw": "{{futureloan_base_url}}/loan/audit",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"loan",
+								"audit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "标列表",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Lemonban-Media-Type",
+								"value": "lemonban.v1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{futureloan_base_url}}/loans?pageIndex=2&pageSize=2",
+							"host": [
+								"{{futureloan_base_url}}"
+							],
+							"path": [
+								"loans"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "312c3555-7b5d-49f9-b0f9-4f5a6fa79d40",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "db97651e-aedb-4f8f-8306-e65232e5ba18",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

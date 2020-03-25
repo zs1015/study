@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 一个系统有很多的模块，一个模块有很多的页面，一个页面有很多的元素 思路：所有页面的元素信息都保存到这个页面 -->
+<testcase caseName="注册测试用例" >
+	<action id="1" name="跳转到某个页面" value="${register_url}"></action>
+	<action id="2" name="输入内容" target="手机号码输入框" value="${phone}"></action>
+	<action id="3" name="输入内容" target="密码输入框" value="${password}"></action>
+</testcase>

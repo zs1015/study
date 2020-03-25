@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="tests" thread-count="2">
+
+	<!-- 第一个线程配置 -->
+	<test name="Test_device1">
+		<parameter name="deviceName" value="emulator-5554"></parameter>
+		<parameter name="udid" value="emulator-5554"></parameter>
+		<parameter name="platformName" value="Android"></parameter>
+		<parameter name="appPackage" value="com.lemon.lemonban"></parameter>
+		<parameter name="appActivity"
+			value="com.lemon.lemonban.activity.WelcomeActivity"></parameter>
+		<parameter name="automationName" value="UIAutomator2"></parameter>
+		<parameter name="appiumIP" value="127.0.0.1"></parameter>
+		<parameter name="appiumPort" value="4723"></parameter>
+		<parameter name="uiautomator2Port" value="8200"></parameter>
+		<classes>
+			<class name="com.lemon.testcases.LoginTest" />
+		</classes>
+	</test> 
+	
+	<!-- 第二个线程配置 -->
+	<test name="Test_device2">
+		<parameter name="deviceName" value="emulator-5556"></parameter>
+		<parameter name="udid" value="emulator-5556"></parameter>
+		<parameter name="platformName" value="Android"></parameter>
+		<parameter name="appPackage" value="com.lemon.lemonban"></parameter>
+		<parameter name="appActivity"
+			value="com.lemon.lemonban.activity.WelcomeActivity"></parameter>
+		<parameter name="automationName" value="UIAutomator2"></parameter>
+		<parameter name="appiumIP" value="127.0.0.1"></parameter>
+		<parameter name="appiumPort" value="4725"></parameter>
+		<parameter name="uiautomator2Port" value="8202"></parameter>
+		<classes>
+			<class name="com.lemon.testcases.HybridTest" />
+		</classes>
+	</test> 
+</suite> <!-- Suite -->
+
+
+org.testng.TestNGException: 
+Method setUp requires 9 parameters but 7 were supplied in the @Configuration annotation.

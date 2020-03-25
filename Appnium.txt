@@ -1,0 +1,164 @@
+appium-desktop下载路径:  https://github.com/appium/appium-desktop/releases
+appium工作原理:
+1.client端也就是我们test script是我们的webdriver测试脚本。
+2.中间是起的Appium的服务，Appium在服务端起了一个Server（4723端口），
+跟selenium Webdriver测试框架类似， Appium⽀持标准的WebDriver JSONWireProtocol。
+这里提供它提供了一套REST的接口,Appium Server接收web driver client标准rest请求，
+解析请求内容，调⽤用对应的框架响应操作。
+3.appium server会把请求转发给中间件Bootstrap.jar ，它是用java写的，安装在手机上.
+ootstrap监听4724端口并接收appium 的命令，最终通过调⽤用UiAutomator的命令来实现。
+4.最后Bootstrap将执行的结果返回给appium server。
+5.appium server再将结果返回给 appium client。
+(Android和IOS的底层引擎不一样,appiun把这些引擎进行封装,给上层提供了一套统一的APi,
+	如:找元素,点击等)
+
+UIAuotomator引擎:
+二次转换 --》 转换成手机端能够识别的指令
+
+
+appium端口:4723
+selenium:::ChromeDriver端口:默认9515
+adb端口:5037
+
+配置::
+deviceName:  设备名(用adb devices找)
+platformName:测试平台(Android/ios)
+appPackage:  app安装包名(命令:aapt dump badging apk路径 |find "package")
+			com.lemon.lemonban
+appActivity: app启动入口(aapt dump badging apk路径 |find "launchable-activity")
+				((((apk路径:D:\apk\lemonban_release_v2.1.2_finally.apk))))
+      	com.lemon.lemonban.activity.WelcomeActivity
+ | :过滤;;;;  > :代表重定向
+
+
+关于adb连接手机(真机)步骤:
+1.USB连接电脑
+2.装一个手机助手:小米手机助手\豌豆荚\91手机助手(这样就可以不用装驱动了)
+	---保证手机助手能连接上
+3.卸载手机助手(助手里有adb.与电脑上的adb冲突)
+
+adb:安卓调试桥梁
+	(-s:指定设备   ;)
+ 	adb help 	帮助手册
+ 	adb version	版本号
+ 	adb devices	检测所有连接设备 (也可以启动服务,与adb start-serve 类似)
+ 	adb disconnected 设备名     :  取消连接设备
+
+    adb pull /sdcard/Pictures D:\log     	拉取
+    adb push D:\log\a.txt /sdcard/Pictures  推送上传
+    adb shell   切换shell模式(Linux)
+
+    adb install xxx.apk  安装
+    adb shell pm install -r 覆盖安装
+    卸载:
+    1.找到前台正打开的应用包名::adb shell dumpsys activity | find "mFocusedActivity"
+    2.卸载:adb uninstall com.lemon.lemonban  (此为上步找到的activityName)
+
+    adb kill-serve  终止adb服务
+    adb start-serve	启动adb服务
+    启动app:: adb shell am start -n 包名/入口
+	adb shell am start -n com.lemon.lemonban/com.lemon.lemonban.activity.WelcomeActivity
+	
+	清缓存数据:adb shell pm clear 包名 
+
+	坐标点击:   adb shell input tap x轴 y轴
+
+	列出所有的包名: adb shell pm list package
+
+	打印日志:  adb logcat	 >代表重定向
+	将日志输出到本地文件:adb logcat > 本地路径 
+	adb logcat -c 清除日志
+
+	adb logcat | find "Display"  抓取打开的app日志
+
+
+
+
+●Appium 
+1.Inspector 	:配置DesiredCapabilities
+			Inspector探测元素/录制脚本
+2.UIAutomatorViewer:SDK提供的原生元素定位工具
+					不需要提供启动参数效率高
+
+
+
+
+
+元素定位::	
+ID(可能会重复)
+text：： AndroidUiautomator（new UiScrollable（）.text("xxx")）
+xpath::  绝对//   相对/
+className：不推荐
+AccessbilityID：：：     contrnt-desc
+坐标：： 不推荐
+原生的uiautomator引擎
+
+手势操作：
+1.滑动：：：自定义：TouchAvtion
+单次滑动：TouchAction
+多次滑动：MultiTouchAction
+2.多点触摸：：：放大、缩小
+Point...
+TouchAction
+add两个TouchAction
+
+特殊场景元素定位：：
+1.滑动列表定位元素：
+2.toast获取：(1)自动化引擎切换到uiautomator2引擎  Android ：5.0以上
+			(2)xpath定位（xpath(//*[contains(@text,'文本值')])）
+3.九宫格：坐标换算
+
+
+Hybird应用自动化
+1.Android  5.0上
+2.UC开发者工具识别App内嵌的web页面元素
+3.webview调试开关：1.app自己加代码，进行打开
+				  2.没有源码（有root：安装Xposed+webviewDebugHook）
+				  			（无root：安装Vi。。。+webviewDebugHook））
+
+
+
+
+
+滑动：
+new UiScrollable(new UiSelector().scrollable(true).instance(0)).
+scrollIntoView(new UiSelector().textMatches
+	(\"" + selector + "\").instance(0))
+
+
+
+API:
+//1.currentActivity():获取当前页面的activityName 
+//2.getPageSource():获取当前页面的结构信息
+//3.getCapabilities():获取所有配置信息
+//4.getCapability():获取指定的配置信息
+getDeviceTime()//设备当前时间
+
+//返回主页
+driver.resetApp();
+
+
+getAttribute:
+//name(返回content-desc或者text)
+//text(返回text)
+//className/class(返回class)
+//resourceId(返回resource-id)
+
+
+		// 1、deviceName：选择哪一台设备进行测试
+        // 不管你是测试多台设备还是测试一台设备 deviceName配置必须要有，但是他的值你可以随意的指定
+        // 当deviceName值没有设定的时候 他就会优先选择adb devices结果中的第一台设备进行测试
+        // 2、udid：当我们进行单台设备测试的时候，不需要该配置
+        // 多设备测试的时候 就必须要 ，Appium需要根据这个配置知道他通讯的设备是哪一台
+
+
+
+用例之间不要有任何的关联
+
+
+
+
+
+
+
+

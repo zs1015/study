@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+
+  <parameter name="deviceName" value="emulator-5554"></parameter>
+  <parameter name="platformName" value="Android"></parameter>
+  <parameter name="appPackage" value="com.lemon.lemonban"></parameter>
+  <parameter name="appActivity" value="com.lemon.lemonban.activity.WelcomeActivity"></parameter>
+  <parameter name="automationName" value="uiautomator2"></parameter>
+  <parameter name="appiumIP" value="127.0.0.1"></parameter>
+  <parameter name="appiumPort" value="4723"></parameter>
+  <test name="Test">
+    <classes>
+      <class name="com.lemon.testcases.LoginTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

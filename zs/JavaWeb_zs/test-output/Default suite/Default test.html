@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>6/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Mon Nov 04 20:50:15 CST 2019</td>
+</tr>
+<tr><td>Total time:</td><td>11 seconds (11807 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.zs.auto.day08_1031.login.LoginTest.login_fail_case()'><b>login_fail_case</b><br>Test class: com.zs.auto.day08_1031.login.LoginTest<br>Parameters: LoginFailData [mobilephone=, password=, expectedTips=用户名不能为空, getMobilephone()=, getPassword()=, getExpectedTips()=用户名不能为空, getRowNo()=2, toString()=Excel [rowNo=2], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=473053293]</td>
+<td></td>
+<td>6</td>
+<td>com.zs.auto.day08_1031.login.LoginTest@5e3a8624</td></tr>
+<tr>
+<td title='com.zs.auto.day08_1031.login.LoginTest.login_fail_case()'><b>login_fail_case</b><br>Test class: com.zs.auto.day08_1031.login.LoginTest<br>Parameters: LoginFailData [mobilephone=zzz, password=, expectedTips=非法的手机号, getMobilephone()=zzz, getPassword()=, getExpectedTips()=非法的手机号, getRowNo()=3, toString()=Excel [rowNo=3], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=1579132337]</td>
+<td></td>
+<td>0</td>
+<td>com.zs.auto.day08_1031.login.LoginTest@5e3a8624</td></tr>
+<tr>
+<td title='com.zs.auto.day08_1031.login.LoginTest.login_fail_case()'><b>login_fail_case</b><br>Test class: com.zs.auto.day08_1031.login.LoginTest<br>Parameters: LoginFailData [mobilephone=13444445555, password=, expectedTips=密码不能为空, getMobilephone()=13444445555, getPassword()=, getExpectedTips()=密码不能为空, getRowNo()=4, toString()=Excel [rowNo=4], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=487792155]</td>
+<td></td>
+<td>0</td>
+<td>com.zs.auto.day08_1031.login.LoginTest@5e3a8624</td></tr>
+<tr>
+<td title='com.zs.auto.day08_1031.login.LoginTest.login_fail_case()'><b>login_fail_case</b><br>Test class: com.zs.auto.day08_1031.login.LoginTest<br>Parameters: LoginFailData [mobilephone=13444445555, password=12345, expectedTips=账号信息错误, getMobilephone()=13444445555, getPassword()=12345, getExpectedTips()=账号信息错误, getRowNo()=5, toString()=Excel [rowNo=5], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=1252540239]</td>
+<td></td>
+<td>0</td>
+<td>com.zs.auto.day08_1031.login.LoginTest@5e3a8624</td></tr>
+<tr>
+<td title='com.zs.auto.day08_1031.login.LoginTest.login_fail_case()'><b>login_fail_case</b><br>Test class: com.zs.auto.day08_1031.login.LoginTest<br>Parameters: LoginFailData [mobilephone=12400008888, password=, expectedTips=非法的手机号, getMobilephone()=12400008888, getPassword()=, getExpectedTips()=非法的手机号, getRowNo()=6, toString()=Excel [rowNo=6], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=314411620]</td>
+<td></td>
+<td>0</td>
+<td>com.zs.auto.day08_1031.login.LoginTest@5e3a8624</td></tr>
+<tr>
+<td title='com.zs.auto.day08_1031.login.LoginTest.login_fail_case()'><b>login_fail_case</b><br>Test class: com.zs.auto.day08_1031.login.LoginTest<br>Parameters: LoginFailData [mobilephone=1344444555, password=, expectedTips=非法的手机号, getMobilephone()=1344444555, getPassword()=, getExpectedTips()=非法的手机号, getRowNo()=7, toString()=Excel [rowNo=7], getClass()=class com.zs.auto.day08_1031.login.LoginFailData, hashCode()=1890266440]</td>
+<td></td>
+<td>0</td>
+<td>com.zs.auto.day08_1031.login.LoginTest@5e3a8624</td></tr>
+</table><p>
+</body>
+</html>

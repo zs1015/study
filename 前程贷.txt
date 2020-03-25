@@ -1,0 +1,29 @@
+前程贷:
+
+项目相关地址、账号信息
+前程贷web账号：13825161923 lemon123456 
+接口项目baseUrl（暂时）：http://120.78.128.25:8766/futureloan 
+数据库连接信息(前程贷接口项目):
+ip：120.78.128.25
+port:3306
+username:future
+pwd:123456
+相关项目地址：
+题库测试后台： 
+登录：http://test.lemonban.com/lmcanon_web_auto/mng/login.html 
+注册：http://test.lemonban.com/lmcanon_web_auto/mng/register.html 
+接口ui自动化练习demo：
+http://test.lemonban.com/ningmengban/app/login/login.html 前程贷
+前台：http://120.78.128.25:8765/
+
+
+
+cookie token  sign seesion：公开课！找班主任
+
+
+body：
+{
+  "mobile_phone": "13888888811", 
+  "pwd": "123456"
+}
+引用变量：{{}}

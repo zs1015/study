@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page pageName="充值页面">
+	<locator name="手机号码输入框" type="id" value="mobilephone"></locator>
+	<locator name="密码输入框" type="id" value="password"></locator>
+	<locator name="登录按钮" type="id" value="login"></locator>
+	<locator name="重置按钮" type="cssSelector" value="input[type='reset']"></locator>
+	<locator name="提示信息元素" type="className" value="tips"></locator>
+</page>
