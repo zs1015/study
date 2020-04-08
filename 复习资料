@@ -176,7 +176,7 @@ ExpectedConditions.numberOfElementsToBeLessThan(By.id("kw"), 5);数量少于5
 
 
 ---切换---
-----1.alert框、confirm框		
+----1.alert框、confirm框----------
 Alert alert = driver.switchTo().alert()
 alert.getText()//获取文本
 alert.accpet()//点击确认
@@ -184,10 +184,18 @@ alert.dismiss()//点击取消消失
 		2.div框：不用切换，不过需要等待
 		3.redio按钮：	findElements(),返回集合，get(0).click()  从0开始
 		4.checkBox： 	findElements(),返回集合，get(0).click()  从0开始
-----2.driver.switchTo().frame()  传name、id、索引 ；；都无的话：用定位到（css、xpath）
+----2.driver.switchTo().frame() ----- 传name、id、索引 ；；都无的话：用定位到（css、xpath）
 		切回去(默认)：driver.switchTo().defaultContent();
 
-----3.driver.switchTo().window()
+----3.driver.switchTo().window()--窗口切换---
+driver.getWindowHandle()：获取第一个页面的句柄      
+Set<String> handles = driver.getWindowHandles();//获取所有页面的句柄(Set是有序的：LinkedHashSet)，但是没有索引找到第几个页面的句柄
+ArrayList<String> handlesList = new ArrayList<String>(handles);//111111.可以包装转成ArrayList()
+String secondHandle = handlesList.get(1);//得到第二个页面的句柄
+driver.switchTo().window(secondHandle);//切换到第二个窗口
+driver.switchTo().window(handlesList.get(0));//切换到第二个窗口
+
+
 ------下拉框--------
 Select select = new Select(WebElement element);
 Select select = new Select(driver.findElement(By.id("xxx")));
@@ -197,8 +205,30 @@ select.selectByValue(value);//根据value值选中对应的选项
 select.selectByVisibleText(text);//根据文本值选中对应的选项
 select.isMultiple();//判断是不是多选的选择框返回boolean值
 select.deselectAll();//取消所有的选中
+-------时间框：-------
+ChromeDriver driver = new ChromeDriver();//如果用多态WebDriver   需要强转  JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+driver.get("https://www.12306.cn/index/");
+String js = "document.getElementById('train_date').removeAttribute('readonly')";//移除属性
+driver.executeScript(js);//执行js脚本移除属性
+driver.findElement(By.id("train_date")).clear();
+driver.findElement(By.id("train_date")).sendKeys("2020-04-28");
 
+driver.executeScript(js) 同步：阻塞
+driver.executeAsyncScript() 异步
+-------------------
+-------鼠标键盘事件：Actions-----Actions actions = new Actions();
+								actions.sendKeys("你好")perform();
+								actions.moveToElement(元素).click().perform();
+--------------2.拖拽： 	需要长按：clickAndHold()-------释放：release()，-----执行表演：preform()
+						元素1.clickAndHold().moveToElement(元素2).release().perform();
+-------文件上传---input按钮，file类型----
+   不点击，直接-----sendKeys(上传文件的路径)
 ----------------------------
+ ------验证码---------------
+ 1.绕过cookie：addCookie
+ 2.万能验证码：000000    前程贷：hapi  测试后台：LM19
+----------------------------
+
 4.元素API：  get()  click()  quit()  close()   findElement()   findElements()返回List集合
 getTagName()	：标签名
 getAttribute()	：获取属性名
