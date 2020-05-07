@@ -128,6 +128,13 @@ https://mirrors.tuna.tsinghua.edu.cn/jenkins/ (这个是清华的镜像链接)
 wget https://mirrors.tuna.tsinghua.edu.cn/jenkins/war/2.173/jenkins.war
 
 
+---testNg----------------
+   反射找对象：dataProviderClass = RegDataProvider.class , （类名.class）  
+   数据提供者：dataProvider = "failCase"（方法名）
+
+
+
+
 ------Selenium------------
 1.版本匹配
 2.IE浏览器：设置忽略缩放、忽略安全域设置、指定一个初始化页面，保持窗口，防止window窗口丢失
@@ -146,6 +153,15 @@ Xpath定位：：：：绝对定位：/div[1]/input[2]
 				准确定位：//*[text()="消息"]  
 				模糊定位：//*[contains(text(),'消')]	
 						 //*[contains(@id,'kw')]
+---截图-------
+//强转为TakesScreenshot
+TakesScreenshot  takesScreenshot = (TakesScreenshot) driver;
+File srcFile = takesScreenshot.getScreenshotAs(OutputType.FILE);//截屏为一个文件对象，
+File destFile = new File("D:\\testStudy\\tu.jpg");//创一个目标文件
+FileUtils.copyFile(srcFile, destFile);
+
+1.配置监听器，
+2.继承TestListenerAdapter类，重写onTestFailure方法
 
 
 ---------等待-----------------
@@ -254,5 +270,90 @@ Point point = window.getPosition(); 获取窗口位置
 point.getX() X轴
 point.getY() Y轴
 Dimension dimension = window.getSize()  尺寸   dimension.getHeight() 高	 dimension.getWidth()：宽
+
+
+---------Appium-----------------------
+--------------------------------------
+1.deviceName:  设备名(用adb devices找)
+2.platformName:测试平台(Android/ios)
+3.appPackage:  app安装包名(命令:aapt dump badging apk路径 |find "package")
+4.appActivity: app启动入口(命令:aapt dump badging apk路径 |find "launchable-activity")
+((((apk路径:D:\apk\lemonban_release_v2.1.2_finally.apk))))
+
+URL url = new URL("http://localhost:4723/wd/hub");//通讯地址
+driver = new AndroidDriver(url,desiredCapabilities);
+| :过滤;;;;  > :代表重定向
+--------关于adb连接手机(真机)步骤:-----------------
+
+1.USB连接电脑
+2.装一个手机助手:小米手机助手\豌豆荚\91手机助手(这样就可以不用装驱动了)
+3.卸载手机助手(助手里有adb.与电脑上的adb冲突)
+
+------adb常用命令----默认端口 5037--------
+1.adb devices 电脑上的设备列表   
+adb disconnect 取消连接 
+2.adb pull [手机路径] [目标路径]   拉取
+3.adb push [目标路径] [手机路径]   提交
+4.adb shell  切换shell模式
+5.adb install   安装
+6.adb uninstall 卸载
+7.adb kill-server  终止服务
+8.adb start-server 开始服务
+9.adb shell am start -n 包名/入口   ：启动app
+10.adb shell pm clear 包名           清缓存
+11.adb shell input tap x轴坐标 y轴坐标   点击
+12.adb shell pm list packages 列出所有apk路径及包名
+
+13.adb logcat 打印日志
+adb logcat > 文件路径    打印日志到什么文件去（>重定向）
+
+-----------app类型------------
+1.native原生：性能最好，无法跨平台，维护高
+2.web       ：可以跨平台
+3.hybrid混合 ：性能比web好，维护成本地，可以跨平台，调试方便，消耗低
+
+
+--------------定位方式：：：：-------------
+1.driver.findElement(By.name("")) 失效
+2.driver.findElementByAndroidUIAutomator("new UiSelector().text(\"abcd\")").click()
+3.xpath
+4.findElementByAccessibility() 对应 content-desc 属性
+5，坐标  TouchAction对象  PointOption.point()
+       touchAction.press().release().perform()
+6.driver.findElementByAndroidUIAutomator("new UiSelector().description(\"abcd\")")
+7.driver.findElementByAndroidUIAutomator("new UiSelector().rescourceId(\"abcd\")")
+
+-----toast 元素-----
+1.appium 1.6.3以上
+2.设置测试引擎能力 uiautomator2
+3.Android版本 5.0以上
+4.方法： findElement(By.xpath("//*[contains(@text,'tips')]"))
+
+
+
+
+
+
+-------------性能--------------
+./jmeter -n -t jianshu.jmx -l a.jtl  （Linux）
+-n 表示非图形化界面运行
+-t 表示测试计划
+-l 表示输出运行结果到文件
+jmeter -n -t jianshu.jmx -l a.jtl  (Window)
+
+-------------性能--------------·
+-------分布式==================
+主控机器：jmeter.properties文件
+remote_hosts=192.168.120.122:8888
+server.rmi.ssl.disable=true
+mode=Standard   用于显示监听结果
+助攻机器：jmeter.properties文件
+server_port=1234
+server.rmi.port=1234
+server.rmi.ssl.disable=true   加密传输认证 为不可用
+配置防火墙：关闭
+
+启动命令：jmeter-server.bat -Djava.rmi.server.hostname=助攻机ip
+
 
 
