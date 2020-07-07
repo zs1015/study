@@ -37,7 +37,7 @@
     "colors": "^1.2.1",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
-    "electron": "^1.8.6",
+    "electron": "^9.1.0",
     "electron-debug": "^1.4.0",
     "electron-installer-dmg": "^0.2.1",
     "electron-installer-windows": "^0.2.0",
